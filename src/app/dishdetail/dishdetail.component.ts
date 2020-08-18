@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -50,12 +50,14 @@ export class DishdetailComponent implements OnInit {
   constructor(private dishService: DishService,
     private location: Location,
     private route: ActivatedRoute,
-    private fb: FormBuilder) { 
-      this.createForm();
+    private fb: FormBuilder,
+    @Inject('BaseURL') private BaseURL) { 
+      
     }
 
   ngOnInit(): void {
 
+    this.createForm();
     this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
     .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
