@@ -8,7 +8,7 @@ import { Comment } from '../shared/comment';
 import { DishService } from '../services/dish.service';
 import { switchMap, timestamp } from "rxjs/operators";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { visibility } from '../animations/app.animation';
+import { visibility, expand } from '../animations/app.animation';
 
 
 @Component({
@@ -16,7 +16,8 @@ import { visibility } from '../animations/app.animation';
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
   animations: [
-   visibility()
+   visibility(),
+   expand()
   ]
   
 
